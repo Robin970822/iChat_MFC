@@ -190,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="def.h" />
+    <ClInclude Include="FileClient.h" />
     <ClInclude Include="FinalProject.h" />
     <ClInclude Include="FinalProjectDoc.h" />
     <ClInclude Include="FinalProjectView.h" />
@@ -202,6 +203,7 @@
     <ClInclude Include="UserView.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FileClient.cpp" />
     <ClCompile Include="FinalProject.cpp" />
     <ClCompile Include="FinalProjectDoc.cpp" />
     <ClCompile Include="FinalProjectView.cpp" />

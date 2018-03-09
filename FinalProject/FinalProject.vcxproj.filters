@@ -51,6 +51,9 @@
     <ClInclude Include="UserServer.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="FileClient.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FinalProject.cpp">
@@ -75,6 +78,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="UserServer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FileClient.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
