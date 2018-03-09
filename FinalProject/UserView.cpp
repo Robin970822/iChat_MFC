@@ -7,18 +7,18 @@
 
 // UserView
 
-IMPLEMENT_DYNCREATE(UserView, CListView)
+IMPLEMENT_DYNCREATE(CUserView, CListView)
 
-UserView::UserView()
+CUserView::CUserView()
 {
 
 }
 
-UserView::~UserView()
+CUserView::~CUserView()
 {
 }
 
-BEGIN_MESSAGE_MAP(UserView, CListView)
+BEGIN_MESSAGE_MAP(CUserView, CListView)
 	ON_WM_CREATE()
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
@@ -27,13 +27,13 @@ END_MESSAGE_MAP()
 // UserView 诊断
 
 #ifdef _DEBUG
-void UserView::AssertValid() const
+void CUserView::AssertValid() const
 {
 	CListView::AssertValid();
 }
 
 #ifndef _WIN32_WCE
-void UserView::Dump(CDumpContext& dc) const
+void CUserView::Dump(CDumpContext& dc) const
 {
 	CListView::Dump(dc);
 }
@@ -43,7 +43,7 @@ void UserView::Dump(CDumpContext& dc) const
 
 // UserView 消息处理程序
 // 添加用户至用户信息列表
-void UserView::AddUser(CString strName, CString strIP)
+void CUserView::AddUser(CString strName, CString strIP)
 {
 	CListCtrl& ctrl = GetListCtrl();
 	// 获取当前列表行数
@@ -64,7 +64,7 @@ void UserView::AddUser(CString strName, CString strIP)
 }
 
 // 在用户信息列表中查询用户
-int UserView::FindUser(CString strIP)
+int CUserView::FindUser(CString strIP)
 {
 	CListCtrl &ctrl = GetListCtrl();
 	int nCount = ctrl.GetItemCount();
@@ -85,7 +85,7 @@ int UserView::FindUser(CString strIP)
 }
 
 // 删除用户，当该用户不在线时
-void UserView::DeleteUser(CString strIP)
+void CUserView::DeleteUser(CString strIP)
 {
 	// 查找用户
 	int nItem = FindUser(strIP);
@@ -100,14 +100,14 @@ void UserView::DeleteUser(CString strIP)
 	return;
 }
 
-void UserView::onDraw(CDC * pDC)
+void CUserView::onDraw(CDC * pDC)
 {
 	CDocument* pDoc = GetDocument();
 	return;
 }
 
 // 禁止拖动表头
-BOOL UserView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult)
+BOOL CUserView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult)
 {
 	// 屏蔽两个消息通知码
 	NMHEADER* pNMheader = (NMHEADER*)lParam;
@@ -123,7 +123,7 @@ BOOL UserView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult)
 }
 
 // 创建界面
-int UserView::OnCreate(LPCREATESTRUCT lpCreateStruct)
+int CUserView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CListView::OnCreate(lpCreateStruct) == -1)
 	{
@@ -144,7 +144,7 @@ int UserView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 }
 
 // 处理heartbeat
-void UserView::OnTimer(UINT nIDEVENT)
+void CUserView::OnTimer(UINT nIDEVENT)
 {
 	if (nIDEVENT != 2)
 	{

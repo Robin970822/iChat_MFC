@@ -4,18 +4,18 @@
 
 // FileSend 对话框
 
-class FileSend : public CDialog
+class CFileSendDlg : public CDialog
 {
-	DECLARE_DYNAMIC(FileSend)
+	DECLARE_DYNAMIC(CFileSendDlg)
 
 public:
-	FileSend(CWnd* pParent = NULL);   // 标准构造函数
-	virtual ~FileSend();
+	CFileSendDlg(CWnd* pParent = NULL);   // 标准构造函数
+	virtual ~CFileSendDlg();
 
 private:
 	CStatic		   m_Info;				// 发送信息
 	CProgressCtrl  m_wndSendProgress;	// 发送进度条
-	FileClient     m_FileCilent;		// 文件客户端
+	CFileClient     m_FileCilent;		// 文件客户端
 	BOOL		   m_bSend;			// 收发标志
 
 public:

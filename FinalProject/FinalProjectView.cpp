@@ -111,7 +111,7 @@ void CFinalProjectView::OnBnClickedButtonSend()
 	}
 
 	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
-	UserView* pUserView = (UserView*)pMain->m_Splitter.GetPane(0, 0);
+	CUserView* pUserView = (CUserView*)pMain->m_Splitter.GetPane(0, 0);
 
 	CListCtrl& ctrl = pUserView->GetListCtrl();
 	int nCount = ctrl.GetItemCount();
@@ -150,7 +150,7 @@ void CFinalProjectView::OnBnClickedButtonRefresh()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
-	UserView* pUserView = (UserView*)pMain->m_Splitter.GetPane(0, 0);
+	CUserView* pUserView = (CUserView*)pMain->m_Splitter.GetPane(0, 0);
 
 	CListCtrl& ctrl = pUserView->GetListCtrl();
 	int nCount = ctrl.GetItemCount();

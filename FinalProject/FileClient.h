@@ -1,9 +1,9 @@
 #pragma once
-class FileClient
+class CFileClient
 {
 public:
-	FileClient();
-	~FileClient();
+	CFileClient();
+	~CFileClient();
 public:
 	// 初始化文件客户端
 	BOOL Init();

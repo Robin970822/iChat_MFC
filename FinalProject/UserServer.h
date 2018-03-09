@@ -4,11 +4,11 @@
 #include "stdafx.h"
 #include "FinalProjectView.h"
 
-class UserServer
+class CUserServer
 {
 public:
-	UserServer();
-	~UserServer();
+	CUserServer();
+	~CUserServer();
 
 public:
 	// 初始化User服务器
@@ -23,7 +23,7 @@ public:
 	BOOL OnUserQuit(LPUSERQUIT pUserQuit, LPCSTR lpSrcIP);
 public:
 	SOCKET	                m_ServerSocket; // 服务器Socket
-	UserView*	            m_pUserView;    // 用户列表
+	CUserView*	            m_pUserView;    // 用户列表
 	CFinalProjectView*		m_pFPView;
 };
 

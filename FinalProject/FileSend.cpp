@@ -9,26 +9,26 @@
 
 // FileSend 对话框
 
-IMPLEMENT_DYNAMIC(FileSend, CDialog)
+IMPLEMENT_DYNAMIC(CFileSendDlg, CDialog)
 
-FileSend::FileSend(CWnd* pParent /*=NULL*/)
+CFileSendDlg::CFileSendDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_DIALOG_SEND, pParent)
 {
 	m_bSend = FALSE;
 }
 
-FileSend::~FileSend()
+CFileSendDlg::~CFileSendDlg()
 {
 }
 
-void FileSend::DoDataExchange(CDataExchange* pDX)
+void CFileSendDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_STATIC_SEND, m_Info);
 	DDX_Control(pDX, IDC_PROGRESS_SEND, m_wndSendProgress);
 }
 
-BOOL FileSend::OnInitDialog()
+BOOL CFileSendDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	m_bSend = FALSE;
@@ -38,38 +38,38 @@ BOOL FileSend::OnInitDialog()
 }
 
 
-BEGIN_MESSAGE_MAP(FileSend, CDialog)
-	ON_BN_CLICKED(IDOK, &FileSend::OnBnClickedOk)
-	ON_BN_CLICKED(IDCANCEL, &FileSend::OnBnClickedCancel)
+BEGIN_MESSAGE_MAP(CFileSendDlg, CDialog)
+	ON_BN_CLICKED(IDOK, &CFileSendDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDCANCEL, &CFileSendDlg::OnBnClickedCancel)
 END_MESSAGE_MAP()
 
 
 // FileSend 消息处理程序
 
 
-void FileSend::OnBnClickedOk()
+void CFileSendDlg::OnBnClickedOk()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CDialog::OnOK();
 }
 
 
-void FileSend::OnBnClickedCancel()
+void CFileSendDlg::OnBnClickedCancel()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CDialog::OnCancel();
 }
 
-UINT FileSend::SendThread(LPVOID pParam)
+UINT CFileSendDlg::SendThread(LPVOID pParam)
 {
-	FileSend* pThis = (FileSend*)pParam;
+	CFileSendDlg* pThis = (CFileSendDlg*)pParam;
 	pThis->m_FileCilent.SendFile(pThis->m_strFilename, 
 		&pThis->m_wndSendProgress);
 	pThis->m_Info.SetWindowText(_T("文件发送完毕"));
 	return 0;
 }
 
-void FileSend::Send()
+void CFileSendDlg::Send()
 {
 	if (m_bSend == FALSE)
 	{

@@ -6,13 +6,13 @@
 #pragma comment(lib, "WS2_32.lib")
 
 
-UserClient::UserClient()
+CUserClient::CUserClient()
 {
 	m_ClientSocket = INVALID_SOCKET;
 }
 
 
-UserClient::~UserClient()
+CUserClient::~CUserClient()
 {
 	if (m_ClientSocket != INVALID_SOCKET)
 	{
@@ -22,7 +22,7 @@ UserClient::~UserClient()
 }
 
 // 初始化客户端
-BOOL UserClient::Init()
+BOOL CUserClient::Init()
 {
 	// 初始化WS2_32.dll
 	WSADATA wsData;
@@ -46,7 +46,7 @@ BOOL UserClient::Init()
 }
 
 // 广播数据
-BOOL UserClient::Broadcast()
+BOOL CUserClient::Broadcast()
 {
 	// 构造数据
 	USERBROADCAST user = { 0 };
@@ -61,7 +61,7 @@ BOOL UserClient::Broadcast()
 	return TRUE;
 }
 
-BOOL UserClient::SendData(CHAR * psxData, UINT nlength, LPCSTR lpDesIP)
+BOOL CUserClient::SendData(CHAR * psxData, UINT nlength, LPCSTR lpDesIP)
 {
 	//AfxMessageBox((LPCTSTR)lpDesIP);
 	struct sockaddr_in addr;
@@ -88,7 +88,7 @@ BOOL UserClient::SendData(CHAR * psxData, UINT nlength, LPCSTR lpDesIP)
 }
 
 // 用户正常退出
-BOOL UserClient::Qiut()
+BOOL CUserClient::Qiut()
 {
 	// 构造数据
 	USERQUIT quit;
@@ -102,7 +102,7 @@ BOOL UserClient::Qiut()
 }
 
 // 
-BOOL UserClient::SendChat(CString strData, CString strDesIP)
+BOOL CUserClient::SendChat(CString strData, CString strDesIP)
 {
 	// 构造数据
 	USERCHAT chat;

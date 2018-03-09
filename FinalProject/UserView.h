@@ -4,13 +4,13 @@
 
 // UserView 视图
 
-class UserView : public CListView
+class CUserView : public CListView
 {
-	DECLARE_DYNCREATE(UserView)
+	DECLARE_DYNCREATE(CUserView)
 
 protected:
-	UserView();           // 动态创建所使用的受保护的构造函数
-	virtual ~UserView();
+	CUserView();           // 动态创建所使用的受保护的构造函数
+	virtual ~CUserView();
 
 public:
 #ifdef _DEBUG

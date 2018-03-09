@@ -121,11 +121,11 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext * pContext)
 {
 	// 切分窗口， 上面部分为UserView, 下面部分为CFianlProjectView
 	m_Splitter.CreateStatic(this, 2, 1);
-	m_Splitter.CreateView(0, 0, RUNTIME_CLASS(UserView), CSize(1000, 300), pContext);
+	m_Splitter.CreateView(0, 0, RUNTIME_CLASS(CUserView), CSize(1000, 300), pContext);
 	m_Splitter.CreateView(1, 0, RUNTIME_CLASS(CFinalProjectView), CSize(1000, 400), pContext);
 
 	// 获取UserView地址
-	m_UserServer.m_pUserView = (UserView*)m_Splitter.GetPane(0, 0);
+	m_UserServer.m_pUserView = (CUserView*)m_Splitter.GetPane(0, 0);
 
 	// 获取ChatView地址
 	CFinalProjectView* pCFinalProjectView = (CFinalProjectView*)m_Splitter.GetPane(1, 0);

@@ -24,7 +24,7 @@ public:
 
 // ÌØĞÔ
 public:
-	UserClient* m_pUserClient;
+	CUserClient* m_pUserClient;
 
 // ²Ù×÷
 public:

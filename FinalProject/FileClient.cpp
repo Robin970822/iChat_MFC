@@ -2,13 +2,13 @@
 #include "FileClient.h"
 
 
-FileClient::FileClient()
+CFileClient::CFileClient()
 {
 	m_ClientSocket = INVALID_SOCKET;
 }
 
 
-FileClient::~FileClient()
+CFileClient::~CFileClient()
 {
 	if (m_ClientSocket != INVALID_SOCKET)
 	{
@@ -17,7 +17,7 @@ FileClient::~FileClient()
 	}
 }
 
-BOOL FileClient::Init()
+BOOL CFileClient::Init()
 {
 	// 创建socket
 	m_ClientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_UDP);
@@ -29,7 +29,7 @@ BOOL FileClient::Init()
 	return TRUE;
 }
 
-BOOL FileClient::ConnectServer(LPCSTR lpServerIP)
+BOOL CFileClient::ConnectServer(LPCSTR lpServerIP)
 {
 	// 连接服务器
 	struct sockaddr_in addr;
@@ -45,7 +45,7 @@ BOOL FileClient::ConnectServer(LPCSTR lpServerIP)
 	return TRUE;
 }
 
-BOOL FileClient::SendFile(LPCSTR pszFilePath, CProgressCtrl * pWndProgress)
+BOOL CFileClient::SendFile(LPCSTR pszFilePath, CProgressCtrl * pWndProgress)
 {
 	// 发送数据头
 	NETHEADER header;
@@ -100,7 +100,7 @@ BOOL FileClient::SendFile(LPCSTR pszFilePath, CProgressCtrl * pWndProgress)
 	return TRUE;
 }
 
-BOOL FileClient::SendData(LPVOID pData, DWORD nLength)
+BOOL CFileClient::SendData(LPVOID pData, DWORD nLength)
 {
 	LPSTR pTemp = (LPSTR)pData;
 	int nRemain = nLength;

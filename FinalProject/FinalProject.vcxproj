@@ -193,6 +193,8 @@
     <ClInclude Include="FileClient.h" />
     <ClInclude Include="FileReceive.h" />
     <ClInclude Include="FileSend.h" />
+    <ClInclude Include="FileServer.h" />
+    <ClInclude Include="FileThread.h" />
     <ClInclude Include="FinalProject.h" />
     <ClInclude Include="FinalProjectDoc.h" />
     <ClInclude Include="FinalProjectView.h" />
@@ -208,6 +210,8 @@
     <ClCompile Include="FileClient.cpp" />
     <ClCompile Include="FileReceive.cpp" />
     <ClCompile Include="FileSend.cpp" />
+    <ClCompile Include="FileServer.cpp" />
+    <ClCompile Include="FileThread.cpp" />
     <ClCompile Include="FinalProject.cpp" />
     <ClCompile Include="FinalProjectDoc.cpp" />
     <ClCompile Include="FinalProjectView.cpp" />

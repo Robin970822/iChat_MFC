@@ -19,9 +19,9 @@ public:
 	// 分割主窗体
 	CSplitterWnd m_Splitter;
 	// 客户端
-	UserClient m_UserClient;
+	CUserClient m_UserClient;
 	// 服务端
-	UserServer m_UserServer;
+	CUserServer m_UserServer;
 
 // 操作
 public:

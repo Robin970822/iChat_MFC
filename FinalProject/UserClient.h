@@ -2,11 +2,11 @@
 #include "stdafx.h"
 #include "UserView.h"
 
-class UserClient
+class CUserClient
 {
 public:
-	UserClient();
-	~UserClient();
+	CUserClient();
+	~CUserClient();
 
 public:
 	// 初始化客户端

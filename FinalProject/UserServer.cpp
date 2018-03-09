@@ -7,14 +7,14 @@
 #pragma comment(lib, "WS2_32.lib")
 
 
-UserServer::UserServer()
+CUserServer::CUserServer()
 {
 	m_pUserView = NULL;
 	m_ServerSocket = INVALID_SOCKET;
 }
 
 
-UserServer::~UserServer()
+CUserServer::~CUserServer()
 {
 	if (m_ServerSocket != INVALID_SOCKET)
 	{
@@ -24,7 +24,7 @@ UserServer::~UserServer()
 }
 
 // 初始化服务器
-BOOL UserServer::Init()
+BOOL CUserServer::Init()
 {
 	// 初始化WS2_32.dll
 	WSADATA wsData;
@@ -59,9 +59,9 @@ BOOL UserServer::Init()
 	return TRUE;
 }
 
-UINT UserServer::UserThread(LPVOID pParam)
+UINT CUserServer::UserThread(LPVOID pParam)
 {
-	UserServer* pThis = (UserServer*)pParam;
+	CUserServer* pThis = (CUserServer*)pParam;
 	// 接收客户端数据
 	while (true)
 	{
@@ -102,7 +102,7 @@ UINT UserServer::UserThread(LPVOID pParam)
 	return 0;
 }
 
-BOOL UserServer::OnUserBroadcast(LPUSERBROADCAST pUserBroadcast, LPCSTR lpSrcIP)
+BOOL CUserServer::OnUserBroadcast(LPUSERBROADCAST pUserBroadcast, LPCSTR lpSrcIP)
 {
 	if (m_pUserView != NULL)
 	{
@@ -112,7 +112,7 @@ BOOL UserServer::OnUserBroadcast(LPUSERBROADCAST pUserBroadcast, LPCSTR lpSrcIP)
 	return TRUE;
 }
 
-BOOL UserServer::OnUserChat(LPUSERCHAT pUserChat, LPCSTR lpSrcIP)
+BOOL CUserServer::OnUserChat(LPUSERCHAT pUserChat, LPCSTR lpSrcIP)
 {
 	if (pUserChat != NULL)
 	{
@@ -121,7 +121,7 @@ BOOL UserServer::OnUserChat(LPUSERCHAT pUserChat, LPCSTR lpSrcIP)
 	return TRUE;
 }
 
-BOOL UserServer::OnUserQuit(LPUSERQUIT pUserQuit, LPCSTR lpSrcIP)
+BOOL CUserServer::OnUserQuit(LPUSERQUIT pUserQuit, LPCSTR lpSrcIP)
 {
 	if (m_pUserView != NULL)
 	{

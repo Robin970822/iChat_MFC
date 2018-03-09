@@ -3,13 +3,13 @@
 
 // FileReceive 对话框
 
-class FileReceive : public CDialog
+class CFileReceiveDlg : public CDialog
 {
-	DECLARE_DYNAMIC(FileReceive)
+	DECLARE_DYNAMIC(CFileReceiveDlg)
 
 public:
-	FileReceive(CWnd* pParent = NULL);   // 标准构造函数
-	virtual ~FileReceive();
+	CFileReceiveDlg(CWnd* pParent = NULL);   // 标准构造函数
+	virtual ~CFileReceiveDlg();
 
 // 对话框数据
 #ifdef AFX_DESIGN_TIME

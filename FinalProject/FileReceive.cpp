@@ -9,15 +9,15 @@
 
 // FileReceive 对话框
 
-IMPLEMENT_DYNAMIC(FileReceive, CDialog)
+IMPLEMENT_DYNAMIC(CFileReceiveDlg, CDialog)
 
-FileReceive::FileReceive(CWnd* pParent /*=NULL*/)
+CFileReceiveDlg::CFileReceiveDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_DIALOG_RECEIVE, pParent)
 {
 	m_ClientSocket = INVALID_SOCKET;
 }
 
-FileReceive::~FileReceive()
+CFileReceiveDlg::~CFileReceiveDlg()
 {
 	if (m_ClientSocket != INVALID_SOCKET)
 	{
@@ -25,14 +25,14 @@ FileReceive::~FileReceive()
 	}
 }
 
-void FileReceive::DoDataExchange(CDataExchange* pDX)
+void CFileReceiveDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_STATIC_RECEIVE, m_Info);
 	DDX_Control(pDX, IDC_PROGRESS_RECEIVE, m_wndProgress);
 }
 
-BOOL FileReceive::OnInitDialog()
+BOOL CFileReceiveDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
@@ -46,9 +46,9 @@ BOOL FileReceive::OnInitDialog()
 }
 
 
-BEGIN_MESSAGE_MAP(FileReceive, CDialog)
-	ON_BN_CLICKED(IDCANCEL, &FileReceive::OnBnClickedCancel)
-	ON_BN_CLICKED(IDOK, &FileReceive::OnBnClickedOk)
+BEGIN_MESSAGE_MAP(CFileReceiveDlg, CDialog)
+	ON_BN_CLICKED(IDCANCEL, &CFileReceiveDlg::OnBnClickedCancel)
+	ON_BN_CLICKED(IDOK, &CFileReceiveDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -56,9 +56,9 @@ END_MESSAGE_MAP()
 
 
 // 接收线程
-UINT FileReceive::ReceiveThread(LPVOID pParam)
+UINT CFileReceiveDlg::ReceiveThread(LPVOID pParam)
 {
-	FileReceive* pThis = (FileReceive*)pParam;
+	CFileReceiveDlg* pThis = (CFileReceiveDlg*)pParam;
 	// 获取文件大小
 	DWORD nLength = pThis->m_SendFile.dwFileLength;
 
@@ -100,7 +100,7 @@ UINT FileReceive::ReceiveThread(LPVOID pParam)
 	return 0;
 }
 
-BOOL FileReceive::Receive(LPVOID pData, DWORD nLength)
+BOOL CFileReceiveDlg::Receive(LPVOID pData, DWORD nLength)
 {
 	LPSTR pTemp = (LPSTR)pData;
 	int nRemain = nLength;
@@ -119,14 +119,14 @@ BOOL FileReceive::Receive(LPVOID pData, DWORD nLength)
 	return TRUE;
 }
 
-void FileReceive::OnBnClickedCancel()
+void CFileReceiveDlg::OnBnClickedCancel()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CDialog::OnCancel();
 }
 
 
-void FileReceive::OnBnClickedOk()
+void CFileReceiveDlg::OnBnClickedOk()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CFileDialog dlg(FALSE, NULL, m_SendFile.szFileName);

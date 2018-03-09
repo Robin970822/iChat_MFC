@@ -60,6 +60,12 @@
     <ClInclude Include="FileReceive.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="FileServer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FileThread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FinalProject.cpp">
@@ -93,6 +99,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="FileReceive.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FileServer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FileThread.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
