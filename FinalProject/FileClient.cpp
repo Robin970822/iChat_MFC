@@ -23,7 +23,7 @@ BOOL CFileClient::Init()
 	m_ClientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_UDP);
 	if (m_ClientSocket == INVALID_SOCKET)
 	{
-		AfxMessageBox(_T("初始化文件客户端发送错误"));
+		AfxMessageBox(_T("Failed socket() for File Client"));
 		return FALSE;
 	}
 	return TRUE;

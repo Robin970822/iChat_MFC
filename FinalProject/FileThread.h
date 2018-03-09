@@ -1,5 +1,6 @@
 #pragma once
-
+#include "FileReceive.h"
+#include "FileSend.h"
 
 
 // CFileThread
@@ -18,6 +19,17 @@ public:
 
 protected:
 	DECLARE_MESSAGE_MAP()
+
+public:
+	CFileReceiveDlg		m_FileReceiveDlg;
+	CFileSendDlg		m_FileSendDlg;
+
+public:
+	BOOL m_bSendDlg;
+	// 接收文件
+	void SetSocket(SOCKET socket, CString strIP, BOOL bFileSendDlg = FALSE);
+	// 发送文件
+	void SetSocket(CString strFilename, CString strIP, BOOL bFileSendDlg = TRUE);
 };
 
 
