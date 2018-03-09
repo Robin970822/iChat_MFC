@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "FileClient.h"
+#include <winsock2.h>
 
+#pragma comment(lib,"WS2_32.lib")
 
 CFileClient::CFileClient()
 {
@@ -19,8 +21,12 @@ CFileClient::~CFileClient()
 
 BOOL CFileClient::Init()
 {
+	// 初始化WS2_32.dll
+	WSADATA wsaData;
+	WORD sockVersion = MAKEWORD(2, 0);
+	::WSAStartup(sockVersion, &wsaData);
 	// 创建socket
-	m_ClientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_UDP);
+	m_ClientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (m_ClientSocket == INVALID_SOCKET)
 	{
 		AfxMessageBox(_T("Failed socket() for File Client"));
@@ -38,7 +44,7 @@ BOOL CFileClient::ConnectServer(LPCSTR lpServerIP)
 	addr.sin_addr.S_un.S_addr = inet_addr(lpServerIP);
 	if (connect(m_ClientSocket, (SOCKADDR*)&addr, sizeof(addr)) == SOCKET_ERROR)
 	{
-		AfxMessageBox(_T("File to connect"));
+		AfxMessageBox(_T("File connect()"));
 		return FALSE;
 	}
 

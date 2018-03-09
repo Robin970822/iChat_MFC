@@ -5,6 +5,7 @@
 #pragma once
 #include "UserClient.h"
 #include "UserServer.h"
+#include "FileServer.h"
 
 class CMainFrame : public CFrameWnd
 {
@@ -22,6 +23,8 @@ public:
 	CUserClient m_UserClient;
 	// 服务端
 	CUserServer m_UserServer;
+	// 文件服务器
+	CFileServer m_FileServer;
 
 // 操作
 public:

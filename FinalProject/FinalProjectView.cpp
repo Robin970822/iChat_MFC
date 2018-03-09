@@ -7,6 +7,7 @@
 
 #include "FinalProjectView.h"
 #include "MainFrm.h"
+#include "FileThread.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -143,6 +144,38 @@ void CFinalProjectView::OnBnClickedButtonSend()
 void CFinalProjectView::OnBnClickedButtonFile()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	CFileDialog dlg(TRUE);
+	if (dlg.DoModal() != IDOK)
+	{
+		AfxMessageBox(_T("请选择文件"));
+		return;
+	}
+	CString strFilePath = dlg.GetPathName();
+
+	// 获取用户视图
+	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	CUserView* pUserView = (CUserView*)pMain->m_Splitter.GetPane(0, 0);
+
+	CListCtrl& ctrl = pUserView->GetListCtrl();
+	int nCount = ctrl.GetItemCount();
+
+	for (size_t i = 0; i < nCount; i++)
+	{
+		if (ctrl.GetCheck(i))
+		{
+			CString strIP = ctrl.GetItemText(i, 2);
+
+			// 创建界面线程
+			CFileThread* pFileThread = (CFileThread*)AfxBeginThread(RUNTIME_CLASS(CFileThread,
+				THREAD_PRIORITY_NORMAL, 0, CREATE_SUSPENDED));
+
+			// 设置参数
+			pFileThread->SetSocket(strFilePath, strIP, TRUE);
+
+			// 开始线程
+			pFileThread->ResumeThread();
+		}
+	}
 }
 
 

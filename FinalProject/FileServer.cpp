@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "FileServer.h"
 #include "FileThread.h"
+#include <winsock2.h>
+
+#pragma comment(lib,"WS2_32.lib")
 
 CFileServer::CFileServer()
 {
@@ -13,6 +16,10 @@ CFileServer::~CFileServer()
 
 BOOL CFileServer::Init()
 {
+	// 初始化WS2_32.dll
+	WSADATA wsaData;
+	WORD sockVersion = MAKEWORD(2, 0);
+	::WSAStartup(sockVersion, &wsaData);
 	// 创建socket
 	m_ServerSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (m_ServerSocket == INVALID_SOCKET)
@@ -34,7 +41,7 @@ BOOL CFileServer::Init()
 	// 创建等候客户端的线程
 	AfxBeginThread(FileThread, this);
 
-	return 0;
+	return TRUE;
 }
 
 UINT CFileServer::FileThread(LPVOID pParam)

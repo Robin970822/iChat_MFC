@@ -83,11 +83,17 @@ void CMainFrame::OnClose()
 
 void CMainFrame::Initialize()
 {
-	if (m_UserServer.Init() != TRUE) {
+	if (m_UserServer.Init() != TRUE)
+	{
 		AfxMessageBox(_T("用户创建服务端失败！"));
 	}
-	if (m_UserClient.Init() != TRUE) {
+	if (m_UserClient.Init() != TRUE)
+	{
 		AfxMessageBox(_T("用户创建客户端失败！"));
+	}
+	if (m_FileServer.Init() != TRUE)
+	{
+		AfxMessageBox(_T("文件服务器创建失败！"));
 	}
 
 	m_UserClient.Broadcast();

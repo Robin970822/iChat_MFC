@@ -32,7 +32,7 @@ BOOL CFileSendDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	m_bSend = FALSE;
-	GetDlgItem(IDOK)->EnableWindow(FALSE);
+	//GetDlgItem(IDOK)->EnableWindow(FALSE);
 	Send();
 	return TRUE;
 }
@@ -78,7 +78,7 @@ void CFileSendDlg::Send()
 			AfxMessageBox(_T("初始化文件客户端失败"));
 			return;
 		}
-		if (m_FileCilent.ConnectServer(m_strDesIP))
+		if (m_FileCilent.ConnectServer(m_strDesIP) == FALSE)
 		{
 			AfxMessageBox(_T("连接服务器失败"));
 			return;
