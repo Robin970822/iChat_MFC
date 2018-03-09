@@ -77,11 +77,7 @@ BOOL FileClient::SendFile(LPCSTR pszFilePath, CProgressCtrl * pWndProgress)
 	while (nRemain > 0)
 	{
 		// 计算发送量
-		DWORD nSend = 4096;
-		if (nRemain < nSend)
-		{
-			nSend = nRemain;
-		}
+		DWORD nSend = 4096 < nRemain ? 4096 : nRemain;
 
 		// 读取数据
 		file.Read(szBuf, nSend);

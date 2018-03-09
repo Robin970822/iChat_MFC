@@ -32,6 +32,7 @@ BOOL FileSend::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	m_bSend = FALSE;
+	GetDlgItem(IDOK)->EnableWindow(FALSE);
 	Send();
 	return TRUE;
 }

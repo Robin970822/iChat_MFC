@@ -57,6 +57,9 @@
     <ClInclude Include="FileSend.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="FileReceive.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FinalProject.cpp">
@@ -87,6 +90,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="FileSend.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FileReceive.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
