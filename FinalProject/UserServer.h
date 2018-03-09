@@ -22,7 +22,7 @@ public:
 	// 用户退出
 	BOOL OnUserQuit(LPUSERQUIT pUserQuit, LPCSTR lpSrcIP);
 public:
-	SOCKET	                m_serverSocket; // 服务器Socket
+	SOCKET	                m_ServerSocket; // 服务器Socket
 	UserView*	            m_pUserView;    // 用户列表
 	CFinalProjectView*		m_pFPView;
 };

@@ -2,8 +2,8 @@
 
 #include "stdafx.h"
 
-#define PORT_USERSERVICE 8989
-#define PORT_FILESERVICE 8990
+#define PORT_USERSERVICE 2017
+#define PORT_FILESERVICE 2018
 
 // 数据包的包头
 typedef struct _tagNetHeader

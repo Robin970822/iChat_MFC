@@ -8,11 +8,17 @@
 
 UserClient::UserClient()
 {
+	m_ClientSocket = INVALID_SOCKET;
 }
 
 
 UserClient::~UserClient()
 {
+	if (m_ClientSocket != INVALID_SOCKET)
+	{
+		::closesocket(m_ClientSocket);
+		::WSACleanup();
+	}
 }
 
 // 初始化客户端
@@ -92,8 +98,6 @@ BOOL UserClient::Qiut()
 	quit.dwExitCode = 0;
 	
 	SendData((CHAR*)&quit, sizeof(quit));
-	::closesocket(m_ClientSocket);
-	::WSACleanup();
 	return TRUE;
 }
 

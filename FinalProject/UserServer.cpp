@@ -10,12 +10,17 @@
 UserServer::UserServer()
 {
 	m_pUserView = NULL;
-	m_serverSocket = NULL;
+	m_ServerSocket = INVALID_SOCKET;
 }
 
 
 UserServer::~UserServer()
 {
+	if (m_ServerSocket != INVALID_SOCKET)
+	{
+		::closesocket(m_ServerSocket);
+		::WSACleanup();
+	}
 }
 
 // 初始化服务器
@@ -27,9 +32,9 @@ BOOL UserServer::Init()
 	::WSAStartup(socketVersion, &wsData);
 
 	// 创建UDP服务器
-	m_serverSocket = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+	m_ServerSocket = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	// 异常监测
-	if (m_serverSocket == INVALID_SOCKET)
+	if (m_ServerSocket == INVALID_SOCKET)
 	{
 		AfxMessageBox("Failed socket()");
 		return FALSE;
@@ -40,7 +45,7 @@ BOOL UserServer::Init()
 	addr.sin_port = htons(PORT_USERSERVICE);
 	addr.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
 
-	BOOL bBind = bind(m_serverSocket, (struct sockaddr*)&addr, sizeof(addr));
+	BOOL bBind = bind(m_ServerSocket, (struct sockaddr*)&addr, sizeof(addr));
 	if (bBind == SOCKET_ERROR)
 	{
 		AfxMessageBox("Failed bind()");
@@ -64,7 +69,7 @@ UINT UserServer::UserThread(LPVOID pParam)
 		sockaddr_in addr = { 0 };
 		int nLength = sizeof(addr);
 		// 判断异常
-		BOOL bRecvfrom = recvfrom(pThis->m_serverSocket, (char*)&packet, sizeof(packet), 0, 
+		BOOL bRecvfrom = recvfrom(pThis->m_ServerSocket, (char*)&packet, sizeof(packet), 0, 
 			(struct sockaddr*)&addr, &nLength);
 		if (bRecvfrom == SOCKET_ERROR)
 		{
