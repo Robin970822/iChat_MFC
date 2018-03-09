@@ -63,7 +63,7 @@ BOOL FileClient::SendFile(LPCSTR pszFilePath, CProgressCtrl * pWndProgress)
 	}
 
 	SENDFILE sendFile;
-	strcpy(sendFile.szFileName, file.GetFileName);
+	strcpy(sendFile.szFileName, file.GetFileName());
 	sendFile.dwFileLength = file.GetLength();
 	SendData(&sendFile, sizeof(sendFile));
 
@@ -73,13 +73,55 @@ BOOL FileClient::SendFile(LPCSTR pszFilePath, CProgressCtrl * pWndProgress)
 	}
 	// 发送文件数据
 	CHAR szBuf[4096];
+	DWORD nRemain = file.GetLength();
+	while (nRemain > 0)
+	{
+		// 计算发送量
+		DWORD nSend = 4096;
+		if (nRemain < nSend)
+		{
+			nSend = nRemain;
+		}
 
+		// 读取数据
+		file.Read(szBuf, nSend);
 
+		// 发送数据
+		SendData(szBuf, nSend);
 
+		// 计算剩余量
+		nRemain -= nSend;
+
+		// 设置进度条位置
+		if (pWndProgress != NULL)
+		{
+			pWndProgress->SetPos(sendFile.dwFileLength - nRemain);
+		}
+	}
+
+	// 关闭文件
+	file.Close();
 	return TRUE;
 }
 
 BOOL FileClient::SendData(LPVOID pData, DWORD nLength)
 {
-	return 0;
+	LPSTR pTemp = (LPSTR)pData;
+	int nRemain = nLength;
+
+	while (nRemain > 0)
+	{
+		int nSend = send(m_ClientSocket, pTemp, nRemain, 0);
+		if (nSend == SOCKET_ERROR)
+		{
+			AfxMessageBox(_T("Failed send()"));
+			return FALSE;
+		}
+		nRemain -= nSend;
+
+		// 添加offset
+		pTemp += nSend;
+	}
+
+	return TRUE;
 }

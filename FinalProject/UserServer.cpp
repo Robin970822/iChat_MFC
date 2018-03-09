@@ -40,7 +40,7 @@ BOOL UserServer::Init()
 		return FALSE;
 	}
 	// 绑定端口
-	struct sockaddr_in addr = { 0 };
+	struct sockaddr_in addr;
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(PORT_USERSERVICE);
 	addr.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
@@ -65,8 +65,8 @@ UINT UserServer::UserThread(LPVOID pParam)
 	// 接收客户端数据
 	while (true)
 	{
-		UDPPACKET packet = { 0 };
-		sockaddr_in addr = { 0 };
+		UDPPACKET packet;
+		sockaddr_in addr;
 		int nLength = sizeof(addr);
 		// 判断异常
 		BOOL bRecvfrom = recvfrom(pThis->m_ServerSocket, (char*)&packet, sizeof(packet), 0, 

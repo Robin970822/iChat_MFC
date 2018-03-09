@@ -64,7 +64,7 @@ BOOL UserClient::Broadcast()
 BOOL UserClient::SendData(CHAR * psxData, UINT nlength, LPCSTR lpDesIP)
 {
 	//AfxMessageBox((LPCTSTR)lpDesIP);
-	struct sockaddr_in addr = { 0 };
+	struct sockaddr_in addr;
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(PORT_USERSERVICE);
 
@@ -91,7 +91,7 @@ BOOL UserClient::SendData(CHAR * psxData, UINT nlength, LPCSTR lpDesIP)
 BOOL UserClient::Qiut()
 {
 	// 构造数据
-	USERQUIT quit = { 0 };
+	USERQUIT quit;
 	quit.header.dwVersion = 1;
 	quit.header.dwCmdID = NETCMDID_USERQUIT;
 	quit.header.dwDataLength = sizeof(quit) - sizeof(USERQUIT);
@@ -105,7 +105,7 @@ BOOL UserClient::Qiut()
 BOOL UserClient::SendChat(CString strData, CString strDesIP)
 {
 	// 构造数据
-	USERCHAT chat = { 0 };
+	USERCHAT chat;
 	chat.header.dwVersion = 1;
 	chat.header.dwCmdID = NETCMDID_USERCHAT;
 	chat.header.dwDataLength = sizeof(chat) - sizeof(USERCHAT);

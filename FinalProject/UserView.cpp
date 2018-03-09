@@ -135,9 +135,9 @@ int UserView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	CListCtrl& ctrl = GetListCtrl();
 	ctrl.SetExtendedStyle(LVS_EX_CHECKBOXES);
-	ctrl.InsertColumn(0, _T(""), LVCFMT_LEFT, 40);
+	ctrl.InsertColumn(0, _T("选择"), LVCFMT_LEFT, 80);
 	ctrl.InsertColumn(1, _T("计算机名称"), LVCFMT_LEFT, 300);
-	ctrl.InsertColumn(2, _T("IP地址"), LVCFMT_LEFT, 300);
+	ctrl.InsertColumn(2, _T("IP地址"), LVCFMT_LEFT, 400);
 
 	SetTimer(2, 10000, NULL);
 	return 0;
