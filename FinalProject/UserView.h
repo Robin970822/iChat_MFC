@@ -19,7 +19,6 @@ public:
 	virtual void Dump(CDumpContext& dc) const;
 #endif
 #endif
-	BOOL m_bHit;		// 判断是点击操作还是插入操作
 
 protected:
 	DECLARE_MESSAGE_MAP()

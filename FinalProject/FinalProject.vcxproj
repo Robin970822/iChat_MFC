@@ -191,6 +191,7 @@
   <ItemGroup>
     <ClInclude Include="def.h" />
     <ClInclude Include="FileClient.h" />
+    <ClInclude Include="FileSend.h" />
     <ClInclude Include="FinalProject.h" />
     <ClInclude Include="FinalProjectDoc.h" />
     <ClInclude Include="FinalProjectView.h" />
@@ -204,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileClient.cpp" />
+    <ClCompile Include="FileSend.cpp" />
     <ClCompile Include="FinalProject.cpp" />
     <ClCompile Include="FinalProjectDoc.cpp" />
     <ClCompile Include="FinalProjectView.cpp" />
