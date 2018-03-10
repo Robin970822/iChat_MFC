@@ -144,13 +144,6 @@ void CFinalProjectView::OnBnClickedButtonSend()
 void CFinalProjectView::OnBnClickedButtonFile()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	CFileDialog dlg(TRUE);
-	if (dlg.DoModal() != IDOK)
-	{
-		AfxMessageBox(_T("请选择文件"));
-		return;
-	}
-	CString strFilePath = dlg.GetPathName();
 
 	// 获取用户视图
 	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
@@ -159,10 +152,45 @@ void CFinalProjectView::OnBnClickedButtonFile()
 	CListCtrl& ctrl = pUserView->GetListCtrl();
 	int nCount = ctrl.GetItemCount();
 
+	bool flag = false;
 	for (size_t i = 0; i < nCount; i++)
 	{
 		if (ctrl.GetCheck(i))
 		{
+			flag = true;
+			//CString strIP = ctrl.GetItemText(i, 2);
+
+			//// 创建界面线程
+			//CFileThread* pFileThread = (CFileThread*)AfxBeginThread(RUNTIME_CLASS(CFileThread,
+			//	THREAD_PRIORITY_NORMAL, 0, CREATE_SUSPENDED));
+
+			//// 设置参数
+			//pFileThread->SetSocket(strFilePath, strIP, TRUE);
+
+			//// 开始线程
+			//pFileThread->ResumeThread();
+		}
+	}
+	if (flag == false)
+	{
+		AfxMessageBox(_T("请选择发送对象"));
+		return;
+	}
+
+	CFileDialog dlg(TRUE);
+	if (dlg.DoModal() != IDOK)
+	{
+		AfxMessageBox(_T("请选择文件"));
+		return;
+	}
+	CString strFilePath = dlg.GetPathName();
+
+
+	for (size_t i = 0; i < nCount; i++)
+	{
+		if (ctrl.GetCheck(i))
+		{
+			flag = true;
 			CString strIP = ctrl.GetItemText(i, 2);
 
 			// 创建界面线程
@@ -176,6 +204,7 @@ void CFinalProjectView::OnBnClickedButtonFile()
 			pFileThread->ResumeThread();
 		}
 	}
+
 }
 
 
